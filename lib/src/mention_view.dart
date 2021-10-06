@@ -79,7 +79,7 @@ class FlutterMentions extends StatefulWidget {
   final bool appendSpaceOnAdd;
 
   ///
-  final Widget child;
+  final List<Widget> child;
 
   /// The decoration to show around the text field.
   final InputDecoration decoration;
@@ -349,7 +349,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
                 )
               : Container(),
           child: Column(children: [
-            Text("Test Widget"),
+            child,
             TextField(
               maxLines: widget.maxLines,
               minLines: widget.minLines,
