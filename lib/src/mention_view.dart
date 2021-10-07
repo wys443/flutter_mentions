@@ -1,9 +1,9 @@
 part of flutter_mentions;
 
 class FlutterMentions extends StatefulWidget {
-  FlutterMentions({
-    @required this.mentions,
-    Key key,
+  const FlutterMentions({
+    required this.mentions,
+    required Key key,
     this.suggestionPosition = SuggestionPosition.Bottom,
     this.suggestionListHeight = 300.0,
     this.onMarkupChanged,
@@ -44,7 +44,7 @@ class FlutterMentions extends StatefulWidget {
     this.scrollController,
     this.autofillHints,
     this.appendSpaceOnAdd = true,
-    this.child,
+    this.children = const [],
   }) : super(key: key);
 
   /// List of Mention that the user is allowed to triggered
@@ -56,7 +56,7 @@ class FlutterMentions extends StatefulWidget {
   final SuggestionPosition suggestionPosition;
 
   /// Triggers when the suggestion was added by tapping on suggestion.
-  final Function(Map<String, dynamic>) onMentionAdd;
+  final Function(Map<String, dynamic>)? onMentionAdd;
 
   /// Max height for the suggestion list
   ///
@@ -67,31 +67,31 @@ class FlutterMentions extends StatefulWidget {
   /// but with the markup of the selected mentions
   ///
   /// This is an optional porperty.
-  final ValueChanged<String> onMarkupChanged;
+  final ValueChanged<String>? onMarkupChanged;
 
   /// Decoration for the Suggestion list.
-  final BoxDecoration suggestionListDecoration;
+  final BoxDecoration? suggestionListDecoration;
 
   /// Focus node for controlling the focus of the Input.
-  final FocusNode focusNode;
+  final FocusNode? focusNode;
 
   /// Should selecting a suggestion add a space at the end or not.
   final bool appendSpaceOnAdd;
 
   ///
-  final List<Widget> child;
+  final List<Widget> children;
 
-  /// The decoration to show around the text field.
+  /// The decoration to show around the text field.W
   final InputDecoration decoration;
 
   /// {@macro flutter.widgets.editableText.keyboardType}
-  final TextInputType keyboardType;
+  final TextInputType? keyboardType;
 
   /// The type of action button to use for the keyboard.
   ///
   /// Defaults to [TextInputAction.newline] if [keyboardType] is
   /// [TextInputType.multiline] and [TextInputAction.done] otherwise.
-  final TextInputAction textInputAction;
+  final TextInputAction? textInputAction;
 
   /// {@macro flutter.widgets.editableText.textCapitalization}
   final TextCapitalization textCapitalization;
@@ -101,16 +101,16 @@ class FlutterMentions extends StatefulWidget {
   /// This text style is also used as the base style for the [decoration].
   ///
   /// If null, defaults to the `subtitle1` text style from the current [Theme].
-  final TextStyle style;
+  final TextStyle? style;
 
   /// {@macro flutter.widgets.editableText.strutStyle}
-  final StrutStyle strutStyle;
+  final StrutStyle? strutStyle;
 
   /// {@macro flutter.widgets.editableText.textAlign}
   final TextAlign textAlign;
 
   /// {@macro flutter.widgets.editableText.textDirection}
-  final TextDirection textDirection;
+  final TextDirection? textDirection;
 
   /// {@macro flutter.widgets.editableText.autofocus}
   final bool autofocus;
@@ -125,7 +125,7 @@ class FlutterMentions extends StatefulWidget {
   final int maxLines;
 
   /// {@macro flutter.widgets.editableText.minLines}
-  final int minLines;
+  final int? minLines;
 
   /// {@macro flutter.widgets.editableText.expands}
   final bool expands;
@@ -134,7 +134,7 @@ class FlutterMentions extends StatefulWidget {
   final bool readOnly;
 
   /// {@macro flutter.widgets.editableText.showCursor}
-  final bool showCursor;
+  final bool? showCursor;
 
   /// If [maxLength] is set to this value, only the "current input length"
   /// part of the character counter is shown.
@@ -142,7 +142,7 @@ class FlutterMentions extends StatefulWidget {
 
   /// The maximum number of characters (Unicode scalar values) to allow in the
   /// text field.
-  final int maxLength;
+  final int? maxLength;
 
   /// If true, prevents the field from allowing more than [maxLength]
   /// characters.
@@ -153,39 +153,39 @@ class FlutterMentions extends StatefulWidget {
   final bool maxLengthEnforced;
 
   /// {@macro flutter.widgets.editableText.onChanged}
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
   /// {@macro flutter.widgets.editableText.onEditingComplete}
-  final VoidCallback onEditingComplete;
+  final VoidCallback? onEditingComplete;
 
   /// {@macro flutter.widgets.editableText.onSubmitted}
-  final ValueChanged<String> onSubmitted;
+  final ValueChanged<String>? onSubmitted;
 
   /// If false the text field is "disabled": it ignores taps and its
   /// [decoration] is rendered in grey.
   ///
   /// If non-null this property overrides the [decoration]'s
   /// [Decoration.enabled] property.
-  final bool enabled;
+  final bool? enabled;
 
   /// {@macro flutter.widgets.editableText.cursorWidth}
   final double cursorWidth;
 
   /// {@macro flutter.widgets.editableText.cursorRadius}
-  final Radius cursorRadius;
+  final Radius? cursorRadius;
 
   /// The color to use when painting the cursor.
   ///
   /// Defaults to [ThemeData.cursorColor] or [CupertinoTheme.primaryColor]
   /// depending on [ThemeData.platform] .
-  final Color cursorColor;
+  final Color? cursorColor;
 
   /// The appearance of the keyboard.
   ///
   /// This setting is only honored on iOS devices.
   ///
   /// If unset, defaults to the brightness of [ThemeData.primaryColorBrightness].
-  final Brightness keyboardAppearance;
+  final Brightness? keyboardAppearance;
 
   /// {@macro flutter.widgets.editableText.scrollPadding}
   final EdgeInsets scrollPadding;
@@ -198,7 +198,7 @@ class FlutterMentions extends StatefulWidget {
 
   /// {@template flutter.material.textfield.onTap}
   /// Called for each distinct tap except for every second tap of a double tap.
-  final GestureTapCallback onTap;
+  final GestureTapCallback? onTap;
 
   /// Callback that generates a custom [InputDecorator.counter] widget.
   ///
@@ -209,26 +209,26 @@ class FlutterMentions extends StatefulWidget {
   /// The returned widget will be wrapped in a [Semantics] widget for
   /// accessibility, but it also needs to be accessible itself.  For example,
   /// if returning a Text widget, set the [semanticsLabel] property.
-  final InputCounterWidgetBuilder buildCounter;
+  final InputCounterWidgetBuilder? buildCounter;
 
   /// {@macro flutter.widgets.editableText.scrollPhysics}
-  final ScrollPhysics scrollPhysics;
+  final ScrollPhysics? scrollPhysics;
 
   /// {@macro flutter.widgets.editableText.scrollController}
-  final ScrollController scrollController;
+  final ScrollController? scrollController;
 
   /// {@macro flutter.widgets.editableText.autofillHints}
   /// {@macro flutter.services.autofill.autofillHints}
-  final Iterable<String> autofillHints;
+  final Iterable<String>? autofillHints;
 
   @override
   FlutterMentionsState createState() => FlutterMentionsState();
 }
 
 class FlutterMentionsState extends State<FlutterMentions> {
-  AnnotationEditingController controller;
+  late AnnotationEditingController controller;
   bool _showSuggestions = false;
-  LengthMap _selectedMention;
+  late LengthMap _selectedMention;
   String _pattern = '';
 
   @override
@@ -295,7 +295,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
 
         setState(() {
           _showSuggestions = val != -1;
-          _selectedMention = val == -1 ? null : lengthMap[val];
+          _selectedMention = (val == -1 ? null : lengthMap[val])!;
         });
       }
     });
@@ -340,7 +340,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
                       "${list.trigger}${value['display']}${widget.appendSpaceOnAdd ? ' ' : ''}",
                     );
 
-                    if (widget.onMentionAdd != null) widget.onMentionAdd(value);
+                    // if (widget.onMentionAdd != null) widget.onMentionAdd(value);
 
                     setState(() {
                       _showSuggestions = false;
@@ -348,50 +348,64 @@ class FlutterMentionsState extends State<FlutterMentions> {
                   },
                 )
               : Container(),
-          child: Column(children: [
-            child,
-            TextField(
-              maxLines: widget.maxLines,
-              minLines: widget.minLines,
-              maxLength: widget.maxLength,
-              focusNode: widget.focusNode,
-              keyboardType: widget.keyboardType,
-              keyboardAppearance: widget.keyboardAppearance,
-              textInputAction: widget.textInputAction,
-              textCapitalization: widget.textCapitalization,
-              style: widget.style,
-              textAlign: widget.textAlign,
-              textDirection: widget.textDirection,
-              readOnly: widget.readOnly,
-              showCursor: widget.showCursor,
-              autofocus: widget.autofocus,
-              autocorrect: widget.autocorrect,
-              maxLengthEnforced: widget.maxLengthEnforced,
-              cursorColor: widget.cursorColor,
-              cursorRadius: widget.cursorRadius,
-              cursorWidth: widget.cursorWidth,
-              buildCounter: widget.buildCounter,
-              autofillHints: widget.autofillHints,
-              decoration: widget.decoration,
-              expands: widget.expands,
-              onEditingComplete: widget.onEditingComplete,
-              onTap: widget.onTap,
-              onSubmitted: widget.onSubmitted,
-              enabled: widget.enabled,
-              enableInteractiveSelection: widget.enableInteractiveSelection,
-              enableSuggestions: widget.enableSuggestions,
-              scrollController: widget.scrollController,
-              scrollPadding: widget.scrollPadding,
-              scrollPhysics: widget.scrollPhysics,
-              controller: controller,
-              onChanged: (text) {
-                if (widget.onChanged != null) widget.onChanged(text);
-                if (widget.onMarkupChanged != null) {
-                  widget.onMarkupChanged(controller.markupText);
-                }
-              },
+          child: Scrollbar(
+            child: SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(children: [
+                ...widget.children,
+                TextField(
+                  maxLines: widget.maxLines,
+                  minLines: widget.minLines,
+                  maxLength: widget.maxLength,
+                  focusNode: widget.focusNode,
+                  keyboardType: widget.keyboardType,
+                  keyboardAppearance: widget.keyboardAppearance,
+                  textInputAction: widget.textInputAction,
+                  textCapitalization: widget.textCapitalization,
+                  style: widget.style,
+                  textAlign: widget.textAlign,
+                  textDirection: widget.textDirection,
+                  readOnly: widget.readOnly,
+                  showCursor: widget.showCursor,
+                  autofocus: widget.autofocus,
+                  autocorrect: widget.autocorrect,
+                  maxLengthEnforced: widget.maxLengthEnforced,
+                  cursorColor: widget.cursorColor,
+                  cursorRadius: widget.cursorRadius,
+                  cursorWidth: widget.cursorWidth,
+                  buildCounter: widget.buildCounter,
+                  autofillHints: widget.autofillHints,
+                  decoration: widget.decoration,
+                  expands: widget.expands,
+                  onEditingComplete: widget.onEditingComplete,
+                  onTap: widget.onTap,
+                  onSubmitted: widget.onSubmitted,
+                  enabled: widget.enabled,
+                  enableInteractiveSelection: widget.enableInteractiveSelection,
+                  enableSuggestions: widget.enableSuggestions,
+                  scrollController: widget.scrollController,
+                  scrollPadding: widget.scrollPadding,
+                  scrollPhysics: widget.scrollPhysics,
+                  controller: controller,
+                  onChanged: (text) {
+                    // if (widget.onChanged != null) {
+                    //   widget.onChanged(text);
+                    // }
+                    // if (widget.onMarkupChanged != null) {
+                    //   widget.onMarkupChanged(controller.markupText);
+                    // }
+                  },
+                ),
+              ]),
             ),
-          ])),
+          )),
     );
+  }
+
+  @override
+  void debugFillProperties(DiagnosticPropertiesBuilder properties) {
+    super.debugFillProperties(properties);
+    properties.add(
+        DiagnosticsProperty<LengthMap>('_selectedMention', _selectedMention));
   }
 }
