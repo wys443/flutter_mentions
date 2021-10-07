@@ -248,7 +248,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
         );
       }
 
-      element.data?.forEach(
+      element.data.forEach(
         (e) => data["${element.trigger}${e['display']}"] = e['style'] != null
             ? Annotation(
                 style: e['style'],
