@@ -10,6 +10,7 @@ class FlutterMentions extends StatefulWidget {
     this.onMarkupChanged,
     this.onMentionAdd,
     this.onSearchChanged,
+    this.children = const [],
     this.leading = const [],
     this.trailing = const [],
     this.suggestionListDecoration,
@@ -62,6 +63,8 @@ class FlutterMentions extends StatefulWidget {
 
   /// List of Mention that the user is allowed to triggered
   final List<Mention> mentions;
+
+  final List<Widget> children;
 
   /// Leading widgets to show before teh Input box, helps preseve the size
   /// size for the Portal widget size.
@@ -443,59 +446,68 @@ class FlutterMentionsState extends State<FlutterMentions> {
                 : Container();
           },
         ),
-        child: Scrollbar(
-          child: SingleChildScrollView(
-              child: Column(
-            children: [
-              Container(height: 20, width: 100),
-              Text('Images'),
-              Text('PDFs'),
-              Row(
-                children: [
-                  ...widget.leading,
-                  Expanded(
-                    child: TextField(
-                      maxLines: widget.maxLines,
-                      minLines: widget.minLines,
-                      maxLength: widget.maxLength,
-                      focusNode: widget.focusNode,
-                      keyboardType: widget.keyboardType,
-                      keyboardAppearance: widget.keyboardAppearance,
-                      textInputAction: widget.textInputAction,
-                      textCapitalization: widget.textCapitalization,
-                      style: widget.style,
-                      textAlign: widget.textAlign,
-                      textDirection: widget.textDirection,
-                      readOnly: widget.readOnly,
-                      showCursor: widget.showCursor,
-                      autofocus: widget.autofocus,
-                      autocorrect: widget.autocorrect,
-                      maxLengthEnforcement: widget.maxLengthEnforcement,
-                      cursorColor: widget.cursorColor,
-                      cursorRadius: widget.cursorRadius,
-                      cursorWidth: widget.cursorWidth,
-                      buildCounter: widget.buildCounter,
-                      autofillHints: widget.autofillHints,
-                      decoration: widget.decoration,
-                      expands: widget.expands,
-                      onEditingComplete: widget.onEditingComplete,
-                      onTap: widget.onTap,
-                      onSubmitted: widget.onSubmitted,
-                      enabled: widget.enabled,
-                      enableInteractiveSelection:
-                          widget.enableInteractiveSelection,
-                      enableSuggestions: widget.enableSuggestions,
-                      scrollController: widget.scrollController,
-                      scrollPadding: widget.scrollPadding,
-                      scrollPhysics: widget.scrollPhysics,
-                      controller: controller,
+        child: Container(
+          margin: EdgeInsets.only(right: 10, left: 10),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(5.0),
+            border: Border.all(
+              color: Colors.grey,
+              width: 1.0,
+            ),
+          ),
+          child: Scrollbar(
+            child: SingleChildScrollView(
+                child: Column(
+              children: [
+                ...widget.children,
+                Row(
+                  children: [
+                    ...widget.leading,
+                    Expanded(
+                      child: TextField(
+                        maxLines: widget.maxLines,
+                        minLines: widget.minLines,
+                        maxLength: widget.maxLength,
+                        focusNode: widget.focusNode,
+                        keyboardType: widget.keyboardType,
+                        keyboardAppearance: widget.keyboardAppearance,
+                        textInputAction: widget.textInputAction,
+                        textCapitalization: widget.textCapitalization,
+                        style: widget.style,
+                        textAlign: widget.textAlign,
+                        textDirection: widget.textDirection,
+                        readOnly: widget.readOnly,
+                        showCursor: widget.showCursor,
+                        autofocus: widget.autofocus,
+                        autocorrect: widget.autocorrect,
+                        maxLengthEnforcement: widget.maxLengthEnforcement,
+                        cursorColor: widget.cursorColor,
+                        cursorRadius: widget.cursorRadius,
+                        cursorWidth: widget.cursorWidth,
+                        buildCounter: widget.buildCounter,
+                        autofillHints: widget.autofillHints,
+                        decoration: widget.decoration,
+                        expands: widget.expands,
+                        onEditingComplete: widget.onEditingComplete,
+                        onTap: widget.onTap,
+                        onSubmitted: widget.onSubmitted,
+                        enabled: widget.enabled,
+                        enableInteractiveSelection:
+                            widget.enableInteractiveSelection,
+                        enableSuggestions: widget.enableSuggestions,
+                        scrollController: widget.scrollController,
+                        scrollPadding: widget.scrollPadding,
+                        scrollPhysics: widget.scrollPhysics,
+                        controller: controller,
+                      ),
                     ),
-                  ),
-                  ...widget.trailing,
-                ],
-              ),
-            ],
-          )),
+                    ...widget.trailing,
+                  ],
+                ),
+              ],
+            )),
+          ),
         ),
       ),
     );
