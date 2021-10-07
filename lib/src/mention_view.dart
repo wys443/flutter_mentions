@@ -39,7 +39,6 @@ class FlutterMentions extends StatefulWidget {
     this.scrollPadding = const EdgeInsets.all(20.0),
     this.enableInteractiveSelection = true,
     this.onTap,
-    this.buildCounter,
     this.scrollPhysics,
     this.scrollController,
     this.autofillHints,
@@ -209,7 +208,6 @@ class FlutterMentions extends StatefulWidget {
   /// The returned widget will be wrapped in a [Semantics] widget for
   /// accessibility, but it also needs to be accessible itself.  For example,
   /// if returning a Text widget, set the [semanticsLabel] property.
-  final InputCounterWidgetBuilder? buildCounter;
 
   /// {@macro flutter.widgets.editableText.scrollPhysics}
   final ScrollPhysics? scrollPhysics;
@@ -373,7 +371,6 @@ class FlutterMentionsState extends State<FlutterMentions> {
                   cursorColor: widget.cursorColor,
                   cursorRadius: widget.cursorRadius,
                   cursorWidth: widget.cursorWidth,
-                  buildCounter: widget.buildCounter,
                   autofillHints: widget.autofillHints,
                   decoration: widget.decoration,
                   expands: widget.expands,
