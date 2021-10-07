@@ -466,6 +466,8 @@ class FlutterMentionsState extends State<FlutterMentions> {
                       children: [
                         ...widget.leading,
                         Expanded(
+                            child: Padding(
+                          padding: EdgeInsets.only(left: 10, right: 10),
                           child: TextField(
                             maxLines: widget.maxLines,
                             minLines: widget.minLines,
@@ -502,7 +504,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
                             scrollPhysics: widget.scrollPhysics,
                             controller: controller,
                           ),
-                        ),
+                        )),
                         ...widget.trailing,
                       ],
                     ),
