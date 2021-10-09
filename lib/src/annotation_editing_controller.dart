@@ -73,6 +73,9 @@ class AnnotationEditingController extends TextEditingController {
                   return reg.hasMatch(match[0]!);
                 })]!;
 
+            print("match text>>> ${match}");
+            print("match text1>>> ${match[0]}");
+
             children.add(
               TextSpan(
                 text: match[0],
@@ -84,6 +87,7 @@ class AnnotationEditingController extends TextEditingController {
           return '';
         },
         onNonMatch: (String text) {
+          print("nonmatch text>>> ${text}");
           children.add(TextSpan(text: text, style: style));
           return '';
         },
