@@ -31,7 +31,8 @@ class AnnotationEditingController extends TextEditingController {
                 return mention.markupBuilder != null
                     ? mention.markupBuilder!(
                         mention.trigger, mention.id!, mention.display!)
-                    : '${mention.trigger}[__${mention.id}__](__${mention.display}__)';
+                    // : '${mention.trigger}[__${mention.id}__](__${mention.display}__)';
+                    : '[${mention.trigger}${mention.id}:${mention.display}]';
               } else {
                 return match[0]!;
               }
@@ -73,9 +74,6 @@ class AnnotationEditingController extends TextEditingController {
                   return reg.hasMatch(match[0]!);
                 })]!;
 
-            print("match text>>> ${match}");
-            print("match text1>>> ${match[0]}");
-
             children.add(
               TextSpan(
                 text: match[0],
@@ -87,7 +85,6 @@ class AnnotationEditingController extends TextEditingController {
           return '';
         },
         onNonMatch: (String text) {
-          print("nonmatch text>>> ${text}");
           children.add(TextSpan(text: text, style: style));
           return '';
         },
