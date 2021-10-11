@@ -447,7 +447,7 @@ class FlutterMentionsState extends State<FlutterMentions> {
           },
         ),
         child: Container(
-          margin: EdgeInsets.only(right: 10, left: 10),
+          margin: EdgeInsets.only(right: 5, left: 5),
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(5.0),
